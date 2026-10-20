@@ -1,3 +1,5 @@
+> **Demonstration status:** This repository uses **mock camera-frame payloads** and short scripted test runs, not a deployed surveillance service. The numerical latency values below are **illustrative sample output**, not benchmark measurements validated on current hardware or infrastructure. Docker images and services have not been revalidated as part of this README correction.
+
 # Real-Time Reconnaissance System with Kafka
 
 A distributed real-time system for processing surveillance camera frames using Apache Kafka for message streaming between stream normalizers and phenomenon detectors.
@@ -37,7 +39,7 @@ The system supports 6 surveillance cameras:
 ### 1. Start the System
 ```bash
 # Navigate to the kafka directory
-cd /Users/mohamed.el.moussaoui/Desktop/Real_time_rec_sys/kafka
+cd real-time-reconnaissance-system
 
 # Start all services
 docker-compose up --build
@@ -65,7 +67,7 @@ docker-compose down -v
 ```json
 {
   "eventId": "uuid-string",
-  "timestamp": "2025-01-XX-XX:XX:XX.XXXXXX",
+  "timestamp": "2025-01-13T14:30:15.123456Z",
   "missionId": "MISSION-SURVEILLANCE-2025",
   "assetId": "CAM-QUAI-01",
   "frame_payload": "base64-encoded-image-data",
@@ -145,7 +147,7 @@ docker run --network kafka_default -e KAFKA_BOOTSTRAP_SERVERS=kafka:29092 stream
 ```bash
 cd detector
 docker build -t phenomenon-detector .
-docker run --network kafka_default -e KAFKA_BOOTSTRAP_SERVERS=phenomenon-detector
+docker run --network kafka_default -e KAFKA_BOOTSTRAP_SERVERS=kafka:29092 phenomenon-detector
 ```
 
 ### Local Development
